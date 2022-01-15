@@ -37,7 +37,9 @@ Product.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // null needs to be allowed for a category ID in order to delete a category that already has products associated with it.
+      // without putting in the ALLOW NULL, you are not able to delete a category that anything associated with it
+      allowNull: true,
       references: {
         model: 'category',
         key: 'id'
